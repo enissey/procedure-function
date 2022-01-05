@@ -1,0 +1,65 @@
+Uses Wincrt;
+Type
+  tab = Array [1..50] Of Integer;
+Var
+  n: Integer;
+  v1,v2: tab;
+  res: String;
+  //Procedure saisir
+Procedure saisir(Var n:Integer);
+Begin
+  Repeat
+    Write('n= ');
+    Readln(n);
+  Until (n>1);
+End;
+//remplissage de deux vecteurs
+Procedure remplissage(n:Integer; Var v1,v2:tab);
+Var
+  i: Integer;
+Begin
+  For i:=1 To n Do
+    Begin
+      Write('v1[',i,'] = ');
+      Readln(v1[i]);
+      Write('v2[',i,'] = ');
+      Readln(v2[i]);
+    End;
+End;
+//Procedure dot
+Procedure dot_product(v1,v2:tab;n:Integer);
+Var
+  i,s: Integer;
+Begin
+  s := 0;
+  For i:=1 To n Do
+    Begin
+      s := s+(v1[i]*v2[i]);
+    End;
+  If (s=0) Then
+    Writeln('the two vectors are orthogonal')
+  Else
+    Writeln('the two vectors not orthogonal');
+End;
+//Function dot
+Function dot_product1(v1,v2:tab;n:Integer): String;
+Var
+  i,s: Integer;
+Begin
+  s := 0;
+  For i:=1 To n Do
+    Begin
+      s := s+(v1[i]*v2[i]);
+    End;
+  If (s=0) Then
+    dot_product1 := 'the two vectors are orthogonal'
+  Else
+    dot_product1 := 'the two vectors not orthogonal';
+End;
+Begin
+  saisir(n);
+  remplissage(n,v1,v2);
+  dot_product(v1,v2,n);
+  res := dot_product1(v1,v2,n);
+  Write('result of the function = ',res);
+End.
