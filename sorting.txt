@@ -1,0 +1,61 @@
+Uses Wincrt;
+Type
+  tab = Array [1..50] Of Integer;
+Var
+  n: Integer;
+  t: tab;
+  //Procedure saisir
+
+Procedure saisir(Var n:Integer);
+Begin
+  Repeat
+    Write('n= ');
+    Readln(n);
+  Until (n>1);
+End;
+//remplissage de deux vecteurs
+
+Procedure remplissage(n:Integer; Var t:tab);
+Var
+  i: Integer;
+Begin
+  For i:=1 To n Do
+    Begin
+      Write('t[',i,'] = ');
+      Readln(t[i]);
+    End;
+End;
+//insertion sort
+Procedure insertionSort(n:Integer;Var t:tab);
+Var
+  j,i,elt: Integer;
+Begin
+  For i:=2 To n Do
+    Begin
+      elt := t[i];
+      j := i-1;
+      While ((j >= 1) And (t[j] > elt)) Do
+        Begin
+          t[j+1] := t[j];
+          j := j-1;
+        End;
+      t[j+1] := elt;
+    End;
+End;
+//Procedure output of the Array
+Procedure output(n:Integer;t:tab);
+Var
+  i: Integer;
+Begin
+  For i:=1 To n Do
+    Begin
+      Writeln('t[',i,'] =',t[i]);
+    End;
+End;
+Begin
+  saisir(n);
+  remplissage(n,t);
+  output(n,t);
+  insertionSort(n,t);
+  output(n,t);
+End.
